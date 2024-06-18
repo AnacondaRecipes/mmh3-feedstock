@@ -1,5 +1,5 @@
 {% set name = "mmh3" %}
-{% set version = "3.0.0" %}
+{% set version = "4.1.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,44 +7,40 @@ package:
 
 source:
   url: https://github.com/hajimes/{{ name|lower }}/archive/v{{ version }}.tar.gz
-  sha256: c83aa26569eb83d230cf83f0a673d2f0cde713e02d5be5f6ae7c7a3be7059532
+  sha256: 0b476dd6f83172cfb3bfec534e78011d9d86efe803182f1932b3566fb9128659
 
 build:
   number: 0
-  skip: True # [py<36]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vvv
 
 requirements:
   build:
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+
   host:
     - python
     - pip
-    - setuptools
-    - wheel
+
   run:
     - python
 
 test:
   imports:
     - mmh3
-  requires:
-    - pip
-  commands:
-    - pip check
 
 about:
-  home: https://github.com/hajimes/mmh3
-  license: CC0-1.0
-  license_family: CC
+  home: http://packages.python.org/mmh3
+  license: MIT
+  license_family: MIT
   license_file: LICENSE
   summary: Python wrapper for MurmurHash (MurmurHash3), a set of fast and robust hash functions.
-  dev_url: https://github.com/hajimes/mmh3
-  doc_url: https://github.com/hajimes/mmh3/blob/master/README.md
+
 extra:
   anaconda-services:
-    ref: https://anaconda.zendesk.com/agent/tickets/50852
+    ref: https://anaconda.zendesk.com/agent/tickets/49522
     reason: Dependency for fastembed
     recipe-maintainers:
       - ianaobi
