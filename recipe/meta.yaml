@@ -12,7 +12,7 @@ source:
 build:
   number: 0
   skip: True # [py<36]
-  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vvv
 
 requirements:
   build:
@@ -43,5 +43,11 @@ about:
   dev_url: https://github.com/hajimes/mmh3
   doc_url: https://github.com/hajimes/mmh3/blob/master/README.md
 extra:
+  anaconda-services:
+    ref: https://anaconda.zendesk.com/agent/tickets/50852
+    reason: Dependency for fastembed
+    recipe-maintainers:
+      - ianaobi
+      - bkreider
   recipe-maintainers:
     - johnlees
