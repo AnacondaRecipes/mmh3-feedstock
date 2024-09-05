@@ -45,6 +45,9 @@ about:
   license_family: CC
   license_file: LICENSE
   summary: Python wrapper for MurmurHash (MurmurHash3), a set of fast and robust hash functions.
+  description: |
+    mmh3 is a Python wrapper for MurmurHash (MurmurHash3), a set of fast 
+    and robust non-cryptographic hash functions invented by Austin Appleby.
   dev_url: https://github.com/hajimes/mmh3
   doc_url: https://github.com/hajimes/mmh3/blob/master/README.md
 extra:
