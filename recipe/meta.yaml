@@ -1,5 +1,5 @@
 {% set name = "mmh3" %}
-{% set version = "3.0.0" %}
+{% set version = "4.1.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://github.com/hajimes/{{ name|lower }}/archive/v{{ version }}.tar.gz
-  sha256: c83aa26569eb83d230cf83f0a673d2f0cde713e02d5be5f6ae7c7a3be7059532
+  sha256: 0b476dd6f83172cfb3bfec534e78011d9d86efe803182f1932b3566fb9128659
 
 build:
   number: 0
-  skip: True # [py<36]
-  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
+  skip: True # [py<38]
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-build-isolation --no-cache-dir -vvv
 
 requirements:
   build:
@@ -27,12 +27,17 @@ requirements:
     - python
 
 test:
+  source_files:
+    - tests
   imports:
     - mmh3
   requires:
     - pip
+    - mypy
+    - pytest
   commands:
     - pip check
+    - pytest tests
 
 about:
   home: https://github.com/hajimes/mmh3
