@@ -39,9 +39,9 @@ test:
     - pytest tests
 
 about:
-  home: https://github.com/hajimes/mmh3
-  license: CC0-1.0
-  license_family: CC
+  home: https://pypi.org/project/mmh3/
+  license: MIT
+  license_family: MIT
   license_file: LICENSE
   summary: Python wrapper for MurmurHash (MurmurHash3), a set of fast and robust hash functions.
   description: |
