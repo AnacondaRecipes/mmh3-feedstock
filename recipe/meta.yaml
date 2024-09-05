@@ -33,7 +33,6 @@ test:
     - mmh3
   requires:
     - pip
-    - mypy
     - pytest
   commands:
     - pip check
