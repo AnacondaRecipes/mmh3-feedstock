@@ -1,5 +1,5 @@
 {% set name = "mmh3" %}
-{% set version = "5.0.1" %}
+{% set version = "5.3.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://github.com/hajimes/{{ name|lower }}/archive/v{{ version }}.tar.gz
-  sha256: 17cc47eb3cb77da32856d0a6c10cb9e463574e4a769cc81a6ec4a3e35b45d23a
+  sha256: 13421810022f5dab96f482ba085582c8e3ebb2be09182754f682473efd1009fd
 
 build:
   number: 0
-  skip: True # [py<38]
+  skip: true  # [py<310]
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-build-isolation --no-cache-dir -vvv
 
 requirements:
@@ -21,10 +21,14 @@ requirements:
   host:
     - python
     - pip
-    - setuptools
+    - setuptools >=74.1.0
     - wheel
   run:
     - python
+  run_constrained:
+    - matplotlib-base ==3.10.9
+    - pandas ==3.0.1
+    - mypy ==2.3.1
 
 test:
   source_files:
@@ -45,10 +49,11 @@ about:
   license_file: LICENSE
   summary: Python wrapper for MurmurHash (MurmurHash3), a set of fast and robust hash functions.
   description: |
-    mmh3 is a Python wrapper for MurmurHash (MurmurHash3), a set of fast 
+    mmh3 is a Python wrapper for MurmurHash (MurmurHash3), a set of fast
     and robust non-cryptographic hash functions invented by Austin Appleby.
   dev_url: https://github.com/hajimes/mmh3
   doc_url: https://github.com/hajimes/mmh3/blob/master/README.md
+
 extra:
   recipe-maintainers:
     - johnlees
